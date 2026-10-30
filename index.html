@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Cyn Hair &amp; Beauty Studio | Victorias City</title>
+    <meta name="description" content="Haircuts, color, treatments and nail care in Victorias City.">
+
+
+    <!-- CDN Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+    <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+
+
+        /* 
+        TODO (C2): Define palette tokens once here
+        60-30-10 Palette tokens:
+        - (60%): --color-pinky (#BE185D) for Light Mode & --color-black (#000000) for Dark Mode
+        - (30%): --color-plum (#2A1650) for contrast / --color-panel (#0D0D0D) for Dark Cards
+        - (10%): --color-accent-gold (#FDE047) for buttons / --color-accent-pink (#F472B6) for highlights
+        */
+
+        @theme {
+            --color-pinky: #BE185D;
+            --color-plum: #2A1650;
+            --color-ink: #000000;
+            --color-panel: #0D0D0D;
+            --color-accent-gold: #FDE047;
+            --color-accent-pink: #F472B6;
+        }
+
+
+        @layer components {
+            .btn {
+                @apply inline-block rounded-full border-2 border-plum bg-accent-gold px-6 py-3 text-sm font-bold text-plum transition-colors hover:bg-plum hover:text-white dark:border-accent-pink dark:bg-accent-pink dark:text-black dark:hover:bg-white dark:hover:text-plum;
+            }
+            .nav-link {
+                @apply text-plum hover:text-pinky transition-colors md:text-white dark:text-pink-400 dark:hover:text-white;
+            }
+            .label {
+                @apply mb-4 text-xs font-bold uppercase tracking-widest text-white;
+            }
+            .body-text {
+                @apply text-sm leading-relaxed text-zinc-200 dark:text-zinc-300;
+            }
+            .card {
+                @apply rounded-2xl border border-plum/10 bg-white p-5 text-plum transition-colors dark:border-white/10 dark:bg-panel dark:text-white dark:hover:border-pink-500/30;
+            }
+            .card .body-text {
+                @apply text-plum/90 dark:text-zinc-400;
+            }
+            .price {
+                @apply mt-3 text-sm font-semibold text-pinky dark:text-pink-400;
+            }
+            .minimal-input {
+                @apply border-b border-white/70 bg-transparent py-2 text-white focus:border-accent-gold focus:outline-none dark:focus:border-accent-pink;
+            }
+            .minimal-input option {
+                @apply bg-white text-plum dark:bg-panel dark:text-white;
+            }
+        }
+    </style>
+</head>
+
+
+<body class="bg-pinky dark:bg-black text-white min-h-screen font-sans antialiased transition-colors duration-300">
+
+
+    <!-- Scroll Progress Bar -->
+    <div id="progressBar" class="fixed top-0 left-0 h-1 w-full bg-accent-gold dark:bg-accent-pink origin-left z-[60]"
+        style="transform: scaleX(0)" aria-hidden="true"></div>
+
+
+    <!-- Header Navigation -->
+    <header
+        class="sticky top-0 z-50 bg-pink/90 dark:bg-panel/80 backdrop-blur-md border-b border-plum/10 dark:border-white/10 transition-colors">
+        <nav class="max-w-3xl mx-auto px-6 py-5 flex gap-4 justify-between items-center" aria-label="Main">
+            <a href="#home" class="font-bold text-white dark:text-white">Cyn Studio</a>
+
+
+            <ul id="menu"
+                class="hidden absolute left-0 top-full w-full flex-col gap-4 px-6 py-5 list-none m-0 text-xs uppercase tracking-widest font-medium bg-white text-plum border-b border-plum/10 dark:bg-panel dark:text-white dark:border-white/10 md:static md:flex md:w-auto md:flex-row md:gap-6 md:p-0 md:border-0 md:bg-transparent md:text-white md:dark:bg-transparent">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#reviews" class="nav-link">Reviews</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+
+            <div class="flex gap-2">
+                <button id="darkModeToggle" type="button" class="btn !px-4 !py-2" aria-label="Toggle dark mode">Dark
+                    mode</button>
+                <button id="menuToggle" type="button" class="btn !px-4 !py-2 md:hidden" aria-controls="menu"
+                    aria-expanded="false">Menu</button>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="max-w-3xl mx-auto px-6 py-16 flex flex-col gap-20">
+
+
+        <!-- 1. Hero Section -->
+        <section id="home" class="py-12 flex flex-col items-start gap-6">
+            <span class="hero-item text-[11px] uppercase tracking-widest text-white font-bold">Victorias City</span>
+
+
+            <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight text-white max-w-xl">
+                Hair that feels like you, on a good day.
+            </h1>
+
+
+            <p class="hero-item body-text text-base max-w-lg">
+                Cyn Hair &amp; Beauty Studio is a neighborhood salon for cuts, color, treatments and nail care, done by
+                stylists who listen first.
+            </p>
+
+
+            <div class="hero-item flex flex-wrap items-center gap-4 mt-2">
+                <a href="#contact" class="btn">Book an appointment</a>
+                <a href="#services" class="btn">See services</a>
+                <button id="replayBtn" type="button" class="btn">Replay intro</button>
+            </div>
+        </section>
+
+
+        <!-- 2. About Section -->
+        <section id="about">
+            <h2 class="label reveal">About</h2>
+            <p class="body-text max-w-2xl reveal">Cyn opened with two chairs and one rule: no rushed appointments.
+                Today, our team serves families, students, and clients across Victorias City. We use gentle salon-grade
+                products, explain every step, and quote prices before we start.</p>
+            <ul class="mt-6 grid grid-cols-3 gap-4 list-none p-0 text-center text-sm">
+                <li class="card reveal"><span
+                        class="block text-2xl font-bold text-pinky dark:text-pink-400">7</span>years open</li>
+                <li class="card reveal"><span
+                        class="block text-2xl font-bold text-pinky dark:text-pink-400">5</span>stylists</li>
+                <li class="card reveal"><span
+                        class="block text-2xl font-bold text-pinky dark:text-pink-400">4k+</span>clients</li>
+            </ul>
+        </section>
+
+
+        <!-- 3. Services Section -->
+        <section id="services">
+            <h2 class="label reveal">Services</h2>
+            <p class="body-text mb-6 reveal">Prices start from the amounts below and depend on hair length.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Haircut &amp; style</h3>
+                    <p class="body-text mt-1">Consultation, wash, cut and blow-dry.</p>
+                    <p class="price">from ₱250</p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Color &amp; highlights</h3>
+                    <p class="body-text mt-1">Single color, balayage and root touch-ups.</p>
+                    <p class="price">from ₱1,200</p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Rebond &amp; keratin</h3>
+                    <p class="body-text mt-1">Smoothing for frizzy or damaged hair.</p>
+                    <p class="price">from ₱1,800</p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Hair spa</h3>
+                    <p class="body-text mt-1">Deep conditioning with a scalp massage.</p>
+                    <p class="price">from ₱450</p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Manicure &amp; pedicure</h3>
+                    <p class="body-text mt-1">Nail shaping, cuticle care and polish.</p>
+                    <p class="price">from ₱200</p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Bridal package</h3>
+                    <p class="body-text mt-1">Hair, makeup and a trial session.</p>
+                    <p class="price">from ₱4,500</p>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- 4. Products Section -->
+        <section id="products">
+            <h2 class="label reveal">Products</h2>
+            <p class="body-text mb-6 reveal">The same products we use in the chair are available to take home.</p>
+            <div class="grid grid-cols-2 gap-4">
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Repair shampoo</h3>
+                    <p class="body-text mt-1">Sulfate-free, for color-treated hair.</p>
+                    <p class="price">₱380</p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Leave-in serum</h3>
+                    <p class="body-text mt-1">Controls frizz in humid weather.</p>
+                    <p class="price">₱420</p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Deep mask</h3>
+                    <p class="body-text mt-1">Weekly treatment, 250 ml.</p>
+                    <p class="price">₱550</p>
+                </article>
+                <article class="card reveal">
+                    <h3 class="font-semibold text-plum dark:text-white">Heat shield spray</h3>
+                    <p class="body-text mt-1">Protects hair up to 230°C.</p>
+                    <p class="price">₱320</p>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- 5. Gallery Section (Bento Grid) -->
+        <section id="gallery">
+            <h2 class="label reveal">Gallery</h2>
+            <p class="body-text mb-6 reveal">Recent work from Cyn Studio in Victorias City.</p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 auto-rows-[8rem] gap-3">
+                <!-- Large Featured Image -->
+                <div
+                    class="reveal col-span-2 row-span-2 relative overflow-hidden rounded-2xl border border-transparent dark:border-white/10 group">
+                    <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRo9PH9hW4RGlm2sYRFvmK8fDC1JG2MAljuSjr7LyqE1HiF40ZPJtQ5ADKf4qI43lJB_9IA0svUSdywRBo"
+                        alt="Balayage highlights styling" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-sm font-semibold text-white">
+                        Balayage, soft caramel</div>
+                </div>
+                <div class="reveal relative overflow-hidden rounded-2xl group">
+                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTvHs08N9GG2PPVnmc-L1bZuELbI-xbCTyiinpBvrVnC7JpmJulwbuWxbGkatcDxs1wL4ldhY0gUlPa-y4"
+                        alt="Layered cut and blowdry" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-xs font-semibold text-white">
+                        Layered cut</div>
+                </div>
+                <div class="reveal relative overflow-hidden rounded-2xl group">
+                    <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQfjtg8lZlnJLkJoQjZFbgZoGjTeq2P2XLB3UMwcierGGL9gTIKvzmBawqMa2jnis7vDS_t23GsuVaASTw"
+                        alt="Hair spa treatment" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-xs font-semibold text-white">
+                        Hair spa</div>
+                </div>
+                <div class="reveal col-span-2 relative overflow-hidden rounded-2xl group">
+                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQNIGKpHDBB4hlJxrVj0x0DPy91E8q8cE6u4CzduvFAF8e7031qpc2efnuCg3xaazpWIguxsAPf6e9GJYw"
+                        alt="Bridal updo and makeup" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-xs font-semibold text-white">
+                        Bridal updo</div>
+                </div>
+                <div class="reveal relative overflow-hidden rounded-2xl group">
+                    <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop"
+                        alt="Gel nails" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-xs font-semibold text-white">
+                        Gel nails</div>
+                </div>
+                <div class="reveal relative overflow-hidden rounded-2xl group">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop"
+                        alt="Keratin finish" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-xs font-semibold text-white">
+                        Keratin finish</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 6. Reviews Section -->
+        <section id="reviews">
+            <h2 class="label reveal">Reviews</h2>
+            <div class="flex flex-col gap-4">
+                <figure class="card reveal">
+                    <blockquote class="body-text">They fixed my box-dye mistake and my hair is healthier than before.
+                    </blockquote>
+                    <figcaption class="mt-2 text-xs font-semibold text-pinky dark:text-pink-400">Anna</figcaption>
+                </figure>
+                <figure class="card reveal">
+                    <blockquote class="body-text">Fair prices, clean tools, and nobody rushed me.</blockquote>
+                    <figcaption class="mt-2 text-xs font-semibold text-pinky dark:text-pink-400">Joel</figcaption>
+                </figure>
+                <figure class="card reveal">
+                    <blockquote class="body-text">The bridal trial made the wedding morning stress-free.</blockquote>
+                    <figcaption class="mt-2 text-xs font-semibold text-pinky dark:text-pink-400">Kristine</figcaption>
+                </figure>
+            </div>
+        </section>
+
+
+        <!-- 7. Contact Section -->
+        <section id="contact">
+            <h2 class="label reveal">Contact</h2>
+            <address class="body-text not-italic mb-6 space-y-1 reveal">
+                <p>Victorias City</p>
+                <p>Open daily, 9:00 AM to 7:00 PM</p>
+                <p>0917 000 0000 · hello@cynstudio.example</p>
+            </address>
+
+
+            <form id="bookingForm" action="#" class="reveal flex flex-col gap-5 w-full max-w-md">
+                <div class="flex flex-col gap-1">
+                    <label for="name" class="text-xs uppercase tracking-wider text-white">Name</label>
+                    <input type="text" id="name" name="name" required class="minimal-input">
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="email" class="text-xs uppercase tracking-wider text-white">Email</label>
+                    <input type="email" id="email" name="email" required class="minimal-input">
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="service" class="text-xs uppercase tracking-wider text-white">Service</label>
+                    <select id="service" name="service" class="minimal-input">
+                        <option>Haircut &amp; style</option>
+                        <option>Color &amp; highlights</option>
+                        <option>Rebond &amp; keratin</option>
+                        <option>Hair spa</option>
+                        <option>Manicure &amp; pedicure</option>
+                        <option>Bridal package</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="message" class="text-xs uppercase tracking-wider text-white">Preferred date and
+                        notes</label>
+                    <textarea id="message" name="message" rows="3" required class="minimal-input"></textarea>
+                </div>
+                <button type="submit" class="btn w-full mt-2">Send request</button>
+                <p id="formStatus" class="text-sm font-bold text-white mt-2" role="status"></p>
+            </form>
+        </section>
+    </main>
+
+
+    <!-- Footer -->
+    <footer id="footer"
+        class="w-full bg-pink dark:bg-black border-t border-plum/10 dark:border-white/10 mt-16 transition-colors duration-300">
+        <div
+            class="max-w-3xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-center items-center text-xs text-white/80 dark:text-zinc-400 gap-2">
+            <p>© 2026 Cyn Hair &amp; Beauty Studio · Victorias City</p>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+
+            // Dark Mode Toggle & Persistence
+            const darkModeToggle = document.getElementById("darkModeToggle");
+            const htmlEl = document.documentElement;
+
+
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme) {
+                if (savedTheme === "dark") htmlEl.classList.add("dark");
+                else htmlEl.classList.remove("dark");
+            }
+
+
+            darkModeToggle.addEventListener("click", () => {
+                htmlEl.classList.toggle("dark");
+                localStorage.setItem("theme", htmlEl.classList.contains("dark") ? "dark" : "light");
+            });
+
+
+            const menuToggle = document.getElementById("menuToggle");
+            const menu = document.getElementById("menu");
+
+
+            menuToggle.addEventListener("click", () => {
+                const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+                menuToggle.setAttribute("aria-expanded", !isExpanded);
+                menu.classList.toggle("hidden");
+            });
+
+
+            const introTl = gsap.timeline({
+                defaults: { ease: "power3.out", duration: 0.8 }
+                //I chose the power3.out easing for a fast, snappy entry.
+            });
+
+
+            introTl
+                .from("header", { y: -50, opacity: 0 })
+                .from("#home h1", { y: 30, opacity: 0 }, "-=0.4")
+                .from(".hero-item", { y: 20, opacity: 0, stagger: 0.15 }, "-=0.3");
+
+
+            document.getElementById("replayBtn").addEventListener("click", () => {
+                introTl.restart();
+            });
+
+
+            // ScrollTrigger Animations & Reduced Motion Check
+            let mm = gsap.matchMedia();
+
+
+            mm.add("(prefers-reduced-motion: no-preference)", () => {
+                // Scroll progress bar scrub
+                gsap.to("#progressBar", {
+                    scaleX: 1,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: document.body,
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: true
+                    }
+                });
+
+
+                // Section reveal on scroll
+                const reveals = gsap.utils.toArray(".reveal");
+                reveals.forEach((el) => {
+                    gsap.from(el, {
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                            toggleActions: "play none none none"
+                        }
+                    });
+                });
+            });
+
+
+            // Form Submit Simulation
+            const bookingForm = document.getElementById("bookingForm");
+            const formStatus = document.getElementById("formStatus");
+
+
+            bookingForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                formStatus.textContent = "Thank you! Your request has been sent to Cyn Studio.";
+                bookingForm.reset();
+            })
+        });
+    </script>
+</body>
